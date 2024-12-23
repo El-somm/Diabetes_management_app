@@ -1,10 +1,12 @@
-
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const passport = require('passport');
 const session = require('express-session');
-require('dotenv').config();
+const dotenv = require('dotenv');
+
+// Load environment variables
+dotenv.config();
 require('./config/passport'); // Load Passport configuration
 
 // Initialize Express app
@@ -28,7 +30,7 @@ app.use(
         resave: false,
         saveUninitialized: false, // Do not save uninitialized sessions
         cookie: {
-            secure: false, // Set `true` in production with HTTPS
+            secure: process.env.NODE_ENV === 'production', // Use HTTPS in production
             httpOnly: true, // Helps prevent XSS attacks
             maxAge: 24 * 60 * 60 * 1000, // 1 day
         },
@@ -42,6 +44,7 @@ app.use(passport.session());
 // MongoDB Connection
 (async () => {
     try {
+        console.log('Connecting to MongoDB...');
         await mongoose.connect(process.env.MONGO_URI, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
@@ -57,8 +60,13 @@ app.use(passport.session());
 app.use('/auth', require('./routes/authRoutes')); // OAuth2.0 authentication routes
 
 // Log Route
-const logRoutes = require('./routes/logRoutes');
-app.use('/api/logs', logRoutes); // Prefix the routes with '/api/logs'
+app.use('/api/logs', require('./routes/logRoutes')); // Prefix the routes with '/api/logs'
+
+// Appointment Route
+app.use('/api/appointments', require('./routes/appointmentRoutes'));
+
+// Nutrition route
+app.use('/api/nutrition', require('./routes/nutritionRoutes'));
 
 // Test Database Route
 app.get('/test-db', async (req, res) => {
@@ -69,17 +77,10 @@ app.get('/test-db', async (req, res) => {
     }
 });
 
-// Appointment Route
-app.use('/api/appointments', require('./routes/appointmentRoutes'));
-
 // Root Route
 app.get('/', (req, res) => {
     res.send('Welcome to the Diabetes Management App API!');
 });
-
-// Nutrition route
-const nutritionRoutes = require('./routes/nutritionRoutes');
-app.use('/api/nutrition', nutritionRoutes);
 
 // Protected Route Example
 app.get('/dashboard', (req, res) => {
@@ -89,6 +90,12 @@ app.get('/dashboard', (req, res) => {
     res.json({ message: 'Welcome to the dashboard!', user: req.user });
 });
 
+// Error Handling Middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ error: 'Something went wrong. Please try again.' });
+});
+
 // 404 Fallback Route
 app.use('*', (req, res) => {
     res.status(404).json({ error: 'Route not found' });
@@ -96,4 +103,6 @@ app.use('*', (req, res) => {
 
 // Start the Server
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+app.listen(PORT, () =>
+    console.log(`Server running on ${process.env.BACKEND_URL || `http://localhost:${PORT}`}`)
+);

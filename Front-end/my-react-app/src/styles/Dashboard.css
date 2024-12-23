@@ -1,0 +1,127 @@
+/* Dashboard Container */
+.dashboard {
+    text-align: center;
+    margin: 20px auto;
+    max-width: 900px;
+    padding: 20px;
+}
+
+/* Header */
+.dashboard h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #969696;
+}
+
+/* Error Message */
+.error {
+    color: red;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* Empty State */
+.empty-state {
+    font-size: 1.2rem;
+    color: #666;
+    margin-top: 20px;
+}
+
+/* Graph Section */
+.dashboard-graph {
+    margin: 50px auto;
+    max-width: 800px; /* Limit width for better responsiveness */
+    height: 400px; /* Ensure the graph is prominent */
+    border: 2px solid #2405f0; /* Slightly thicker border for emphasis */
+    border-radius: 15px;
+    background-color: #f0f4fc; /* Softer background color */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Larger shadow for emphasis */
+    padding: 20px;
+    display: flex;
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+}
+
+/* Log Form */
+.log-form {
+    margin: 30px auto;
+    padding: 20px;
+    max-width: 500px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Header */
+.log-form h2 {
+    margin-bottom: 15px;
+    color: #707070;
+    font-size: 1.8rem;
+}
+
+/* Labels */
+.log-form label {
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Inputs */
+.log-form input {
+    width: 50%; /* Make inputs more prominent */
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+/* Button */
+.log-form button {
+    width: 50%;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.log-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .dashboard {
+        padding: 10px;
+        max-width: 95%;
+    }
+
+    .dashboard-graph {
+        max-width: 100%;
+        height: 300px; /* Reduce height for smaller devices */
+    }
+
+    .log-form {
+        padding: 15px;
+    }
+
+    .log-form input {
+        width: 100%; /* Expand inputs to fit smaller screens */
+    }
+
+    .log-form button {
+        width: 100%; /* Expand button width on smaller screens */
+        padding: 12px;
+        font-size: 1.1rem;
+    }
+}

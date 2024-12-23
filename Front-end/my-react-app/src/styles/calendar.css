@@ -1,0 +1,141 @@
+.calendar-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px auto;
+    max-width: 800px; /* Centered layout with a maximum width */
+    padding: 20px;
+    background-color: #ffffff; /* Light background for better contrast */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.calendar-page h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+/* Notes Section */
+.notes-section {
+    width: 100%;
+    background-color: #5d5050;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    color: #555;
+    text-align: left;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Section */
+.calendar-page form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Adds spacing between form elements */
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #a39f9fa8;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-page form label {
+    font-weight: bold;
+    color: #333;
+}
+
+.calendar-page form input,
+.calendar-page form textarea,
+.calendar-page form button {
+    margin: 0;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #100a0a;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.calendar-page form button {
+    background-color: #4285f4;
+    color: rgb(9, 1, 1);
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.calendar-page form button:hover {
+    background-color: #357ae8;
+}
+
+/* Appointments List */
+.calendar-page ul {
+    margin-top: 20px;
+    width: 100%;
+    padding: 0;
+    list-style: none;
+}
+
+.calendar-page li {
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #aeadad;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.calendar-page li span {
+    font-size: 1rem;
+    color: #020202;
+}
+
+.calendar-page li button {
+    background-color: #861517;
+    color: rgb(217, 192, 192);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px 15px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.calendar-page li button:hover {
+    background-color: #e33a3d;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .calendar-page {
+        padding: 15px;
+    }
+
+    .calendar-page h1 {
+        font-size: 2rem;
+    }
+
+    .calendar-page form {
+        padding: 15px;
+        max-width: 100%;
+    }
+
+    .calendar-page li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .calendar-page li button {
+        margin-top: 10px;
+    }
+}
